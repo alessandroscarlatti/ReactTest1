@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>The Cat in the Hat Comes Back!</title>
+    <script src="https://fb.me/react-15.0.0.js"></script>
+    <script src="https://fb.me/react-dom-15.0.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+  </head>
+
+  <body>
+    <div id="app"></div>
+
+<script type="text/babel">
+class Thing extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      number: props.number
+    }
+  }
+  render() {
+    return (
+      <h2>Thing {this.state.number}!</h2>
+    )
+  }
+}
+
+class LittleCat extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      letter: props.letter
+    }
+  }
+  render() {
+    return (
+      <span>Little Cat! {this.state.letter}</span>
+    )
+  }
+}
+
+class App extends React.Component {
+  render() {
+    console.log("rendering app component")
+    return (
+      <span>
+        <h1>Thing:</h1><Thing number="1" />
+        <h1>Little Cat:</h1><LittleCat letter="A" />
+      </span>
+    )
+  }
+}
+
+ReactDOM.render(<App />, document.getElementById('app'));
+</script>
+
+  </body>
+</html>
