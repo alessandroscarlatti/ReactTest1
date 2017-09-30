@@ -1,21 +1,27 @@
 var path = require('path');
-var nodeExternals = require('webpack-node-externals');
+const webpack = require('webpack');
 
 module.exports = {
     entry: './js/app/index.jsx',
-    devtool: 'sourcemaps',
+    devtool: 'cheap-module-source-map',
     cache: true,
     output: {
         path: __dirname,
         filename: 'bundle.js'
     },
-    // target: 'node',
-    // externals: [nodeExternals()],
+    plugins: [
+        // new Uglify()
+        new webpack.DefinePlugin({
+          'process.env': {
+            'NODE_ENV': JSON.stringify('production')
+          }
+        })
+    ],
     module: {
         loaders: [
             {
                 test: /\.jsx$/,
-                exclude: /node_modules/,
+               	exclude: /node_modules/,
                 loader: 'babel-loader',
                 query: {
                     cacheDirectory: true,
@@ -23,5 +29,5 @@ module.exports = {
                 }
             }
         ]
-    },
+    }
 };

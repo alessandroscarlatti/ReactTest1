@@ -5,6 +5,6 @@ const toggleSquare = (text) => {
     case 'o': return '_';
     default: return '_';
   }
-}
+};
 
 export default toggleSquare;

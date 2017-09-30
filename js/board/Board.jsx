@@ -24,7 +24,7 @@ class Board extends React.Component {
 
 
     return (
-      <table onclick={this.state.tic}>
+      <table>
         <tbody>
           <tr>
             <td><Square tic={this.state.tic} square={this.state.boardState[0]} /></td><td><Square tic={this.state.tic} square={this.state.boardState[1]} /></td><td><Square tic={this.state.tic} square={this.state.boardState[2]} /></td>

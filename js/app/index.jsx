@@ -1,7 +1,8 @@
 import { createStore } from 'redux';
 import App from './App.jsx';
 import boardReducer from '../board/boardReducer.js';
-import ReactDom from 'react-dom';
+import ReactDOM from 'react-dom';
+import React from 'react';
 
 console.log("index.js loaded!");
 
