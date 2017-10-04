@@ -1,5 +1,5 @@
 import { createStore } from 'redux';
-import App from './App.jsx';
+import App from './App';
 import boardReducer from '../board/boardReducer.js';
 import ReactDOM from 'react-dom';
 import React from 'react';

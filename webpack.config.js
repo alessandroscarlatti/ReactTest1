@@ -9,8 +9,10 @@ module.exports = {
         path: __dirname,
         filename: 'bundle.js'
     },
+    resolve: {
+        extensions: ['.js', '.jsx']
+    },
     plugins: [
-        // new Uglify()
         new webpack.DefinePlugin({
           'process.env': {
             'NODE_ENV': JSON.stringify('production')
@@ -18,16 +20,26 @@ module.exports = {
         })
     ],
     module: {
-        loaders: [
-            {
-                test: /\.jsx$/,
-               	exclude: /node_modules/,
-                loader: 'babel-loader',
-                query: {
-                    cacheDirectory: true,
-                    presets: ['es2015', 'react']
-                }
+      loaders: [
+        {
+          test: /\.scss$/,
+          loaders: ["style-loader", {
+              loader: 'css-loader',
+              options: {
+                modules: true
+              }
             }
-        ]
+          , "sass-loader"]
+        },
+        {
+            test: /\.jsx$/,
+           	exclude: /node_modules/,
+            loader: 'babel-loader',
+            query: {
+                cacheDirectory: true,
+                presets: ['es2015', 'react']
+            }
+        }
+      ]
     }
 };
