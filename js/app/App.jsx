@@ -1,19 +1,11 @@
 import React from 'react';
 import Board from '../board/Board.jsx'
+import {ticFunction} from '../actions/index'
 
 class App extends React.Component {
 
   constructor(props) {
     super(props)
-
-    let ticFunction = (dispatch) => {
-      return (id, text) => {
-        return () => {
-          console.log("props are:"); console.log(props);
-          dispatch({ type: 'SQUARE_CLICKED', id: id, text: text });
-        }
-      }
-    }
 
     this.state = {
       tic: ticFunction(props.dispatch),

@@ -1,27 +1,22 @@
-import toggleSquare from './boardActions.js';
+import toggleSquare from '../actions/index.js';
+import { squareBuilder, squareReducer } from '../square/squareReducer'
 
-const boardReducer = (state = [
-  {id: 1, text: '_' }, {id: 2, text: '_' }, {id: 3, text: '_' },
-  {id: 4, text: '_' }, {id: 5, text: '_' }, {id: 6, text: '_' },
-  {id: 7, text: '_' }, {id: 8, text: '_' }, {id: 9, text: '_' }
-], action) => {
+const initialState = [
+  squareBuilder(1, '_'), squareBuilder(2, '_'), squareBuilder(3, '_'),
+  squareBuilder(4, '_'), squareBuilder(5, '_'), squareBuilder(6, '_'),
+  squareBuilder(7, '_'), squareBuilder(8, '_'), squareBuilder(9, '_')  
+]
 
-  console.log("boardReducer called with state and action..."); console.log(state); console.log(action);
+const boardReducer = (state = initialState, action) => {
+
+  console.log("boardReducer called with state and action..."); 
+  console.log(state); 
 
   switch (action.type) {
-    case 'SQUARE_CLICKED':
-      console.log('square' + action.id + 'clicked!')
-      let newState = state.map((i) => {
-        console.log('mapping item:')
-        console.log(i)
-        return i.id === action.id ? Object.assign({}, i, { text: toggleSquare(action.text), id: action.id }) : i
-      });
-
-      console.log("new boardState: "); console.log(newState);
-      return newState;
-
     default:
-      return state;
+      return state.map((square) => {
+        return squareReducer(square, action);
+      });
   }
 };
 

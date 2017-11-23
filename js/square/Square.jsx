@@ -22,7 +22,8 @@ class Square extends React.Component {
 
   componentWillReceiveProps(nextProps) {
 
-    console.log("will receive Props"); console.log(nextProps);
+    console.log("will receive Props"); 
+    console.log(nextProps);
 
     this.setState({
       click: nextProps.tic(nextProps.square.id, nextProps.square.text),
@@ -43,7 +44,10 @@ class Square extends React.Component {
     console.log(squareStyles);
 
     return (
-      <span className={squareStyles.squareStyle} onClick={this.state.click}>{this.state.text}</span>
+      <span className={squareStyles.squareStyle} 
+        onClick={this.state.click}>
+          {this.state.text}
+      </span>
     )
   }
 }
