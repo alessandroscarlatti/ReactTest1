@@ -9,20 +9,20 @@ class App extends React.Component {
 
     this.state = {
       tic: ticFunction(props.dispatch),
-      boardState: props.boardState
+      squares: props.reduxState.squares
     }
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      boardState: nextProps.boardState
+      squares: nextProps.reduxState.squares
     })
   }
 
   render() {
     return (
       <span>
-        <Board tic={this.state.tic} boardState={this.state.boardState} />
+        <Board tic={this.state.tic} squares={this.state.squares} />
       </span>
     )
   }

@@ -1,7 +1,7 @@
 import { createStore, combineReducers } from 'redux';
-import App from './App';
-import boardReducer from '../board/boardReducer';
-import { squareReducer } from '../square/squareReducer';
+import App from './app/App';
+import boardReducer from './board/boardReducer';
+import { squareReducer } from './square/squareReducer';
 import ReactDOM from 'react-dom';
 import React from 'react';
 
@@ -15,13 +15,15 @@ console.log("index.js loaded!");
 // the BoardReducer.
 // In addition, connect the store to the Redux devTools Chrome extension.
 const store = createStore(
-  boardReducer, 
+  combineReducers({
+      squares: boardReducer
+  }),
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
 const renderApp = () => {
   console.log("renderApp() called");
-  ReactDOM.render(<App boardState={store.getState()} dispatch={store.dispatch} />, document.getElementById('app'));  
+  ReactDOM.render(<App reduxState={store.getState()} dispatch={store.dispatch} />, document.getElementById('app'));  
 }
 
 // now we connect React to Redux.

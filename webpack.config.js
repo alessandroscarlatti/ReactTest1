@@ -2,7 +2,7 @@ var path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-    entry: './js/app/index.jsx',
+    entry: './js/index.jsx',
     devtool: 'cheap-module-source-map',
     cache: true,
     output: {

@@ -827,11 +827,13 @@ console.log("index.js loaded!");
 // because the Square reducer is nested inside
 // the BoardReducer.
 // In addition, connect the store to the Redux devTools Chrome extension.
-var store = (0, _redux.createStore)(_boardReducer2.default, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+var store = (0, _redux.createStore)((0, _redux.combineReducers)({
+  squares: _boardReducer2.default
+}), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 var renderApp = function renderApp() {
   console.log("renderApp() called");
-  _reactDom2.default.render(_react2.default.createElement(_App2.default, { boardState: store.getState(), dispatch: store.dispatch }), document.getElementById('app'));
+  _reactDom2.default.render(_react2.default.createElement(_App2.default, { reduxState: store.getState(), dispatch: store.dispatch }), document.getElementById('app'));
 };
 
 // now we connect React to Redux.
@@ -1505,7 +1507,7 @@ var App = function (_React$Component) {
 
     _this.state = {
       tic: (0, _index.ticFunction)(props.dispatch),
-      boardState: props.boardState
+      squares: props.reduxState.squares
     };
     return _this;
   }
@@ -1514,7 +1516,7 @@ var App = function (_React$Component) {
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(nextProps) {
       this.setState({
-        boardState: nextProps.boardState
+        squares: nextProps.reduxState.squares
       });
     }
   }, {
@@ -1523,7 +1525,7 @@ var App = function (_React$Component) {
       return _react2.default.createElement(
         'span',
         null,
-        _react2.default.createElement(_Board2.default, { tic: this.state.tic, boardState: this.state.boardState })
+        _react2.default.createElement(_Board2.default, { tic: this.state.tic, squares: this.state.squares })
       );
     }
   }]);
@@ -1602,7 +1604,7 @@ var Board = function (_React$Component) {
 
     _this.state = {
       tic: props.tic,
-      boardState: props.boardState
+      squares: props.squares
     };
     return _this;
   }
@@ -1611,7 +1613,7 @@ var Board = function (_React$Component) {
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(nextProps) {
       this.setState({
-        boardState: nextProps.boardState
+        squares: nextProps.squares
       });
     }
   }, {
@@ -1619,7 +1621,7 @@ var Board = function (_React$Component) {
     value: function render() {
 
       console.log("this.state.boardState is:");
-      console.log(this.state.boardState);
+      console.log(this.state.squares);
 
       return _react2.default.createElement(
         'table',
@@ -1633,17 +1635,17 @@ var Board = function (_React$Component) {
             _react2.default.createElement(
               'td',
               null,
-              _react2.default.createElement(_Square2.default, { tic: this.state.tic, square: this.state.boardState[0] })
+              _react2.default.createElement(_Square2.default, { tic: this.state.tic, square: this.state.squares[0] })
             ),
             _react2.default.createElement(
               'td',
               null,
-              _react2.default.createElement(_Square2.default, { tic: this.state.tic, square: this.state.boardState[1] })
+              _react2.default.createElement(_Square2.default, { tic: this.state.tic, square: this.state.squares[1] })
             ),
             _react2.default.createElement(
               'td',
               null,
-              _react2.default.createElement(_Square2.default, { tic: this.state.tic, square: this.state.boardState[2] })
+              _react2.default.createElement(_Square2.default, { tic: this.state.tic, square: this.state.squares[2] })
             )
           ),
           _react2.default.createElement(
@@ -1652,17 +1654,17 @@ var Board = function (_React$Component) {
             _react2.default.createElement(
               'td',
               null,
-              _react2.default.createElement(_Square2.default, { tic: this.state.tic, square: this.state.boardState[3] })
+              _react2.default.createElement(_Square2.default, { tic: this.state.tic, square: this.state.squares[3] })
             ),
             _react2.default.createElement(
               'td',
               null,
-              _react2.default.createElement(_Square2.default, { tic: this.state.tic, square: this.state.boardState[4] })
+              _react2.default.createElement(_Square2.default, { tic: this.state.tic, square: this.state.squares[4] })
             ),
             _react2.default.createElement(
               'td',
               null,
-              _react2.default.createElement(_Square2.default, { tic: this.state.tic, square: this.state.boardState[5] })
+              _react2.default.createElement(_Square2.default, { tic: this.state.tic, square: this.state.squares[5] })
             )
           ),
           _react2.default.createElement(
@@ -1671,17 +1673,17 @@ var Board = function (_React$Component) {
             _react2.default.createElement(
               'td',
               null,
-              _react2.default.createElement(_Square2.default, { tic: this.state.tic, square: this.state.boardState[6] })
+              _react2.default.createElement(_Square2.default, { tic: this.state.tic, square: this.state.squares[6] })
             ),
             _react2.default.createElement(
               'td',
               null,
-              _react2.default.createElement(_Square2.default, { tic: this.state.tic, square: this.state.boardState[7] })
+              _react2.default.createElement(_Square2.default, { tic: this.state.tic, square: this.state.squares[7] })
             ),
             _react2.default.createElement(
               'td',
               null,
-              _react2.default.createElement(_Square2.default, { tic: this.state.tic, square: this.state.boardState[8] })
+              _react2.default.createElement(_Square2.default, { tic: this.state.tic, square: this.state.squares[8] })
             )
           )
         )
