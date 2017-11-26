@@ -742,17 +742,22 @@ module.exports = invariant;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ticFunction", function() { return ticFunction; });
-const ticFunction = (dispatch) => {
-    return (id, text) => {
-        return () => {
-            dispatch({ type: 'SQUARE_CLICKED', id: id, text: text });
-        }
-    }
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return squareBuilder; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return toggleSquare; });
+const squareBuilder = (id, text) => {
+    return { id, text }
 }
 
-
+const toggleSquare = (text) => {
+    switch (text) {
+      case '_': return 'x';
+      case 'x': return 'o';
+      case 'o': return '_';
+      default: return '_';
+    }
+  };
+  
+  
 
 /***/ }),
 /* 12 */
@@ -760,14 +765,8 @@ const ticFunction = (dispatch) => {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "squareBuilder", function() { return squareBuilder; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "squareReducer", function() { return squareReducer; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__board_boardActions_js__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils__ = __webpack_require__(11);
 
-
-const squareBuilder = (id, text) => {
-    return { id, text }
-}
 
 const initialState = {
     id: 1,
@@ -778,14 +777,14 @@ const squareReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'SQUARE_CLICKED':
             if (action.id === state.id)
-                return squareBuilder(action.id, Object(__WEBPACK_IMPORTED_MODULE_0__board_boardActions_js__["a" /* default */])(action.text))
+                return Object(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* squareBuilder */])(action.id, Object(__WEBPACK_IMPORTED_MODULE_0__utils__["b" /* toggleSquare */])(action.text))
 
         default:
-            return squareBuilder(state.id, state.text);
+            return Object(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* squareBuilder */])(state.id, state.text);
     }
 }
 
-
+/* harmony default export */ __webpack_exports__["default"] = (squareReducer);
 
 /***/ }),
 /* 13 */
@@ -802,7 +801,7 @@ var _App = __webpack_require__(30);
 
 var _App2 = _interopRequireDefault(_App);
 
-var _boardReducer = __webpack_require__(39);
+var _boardReducer = __webpack_require__(40);
 
 var _boardReducer2 = _interopRequireDefault(_boardReducer);
 
@@ -1487,7 +1486,7 @@ var _Board = __webpack_require__(32);
 
 var _Board2 = _interopRequireDefault(_Board);
 
-var _index = __webpack_require__(11);
+var _index = __webpack_require__(39);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2391,15 +2390,32 @@ module.exports = function (css) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__actions_index_js__ = __webpack_require__(11);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ticFunction", function() { return ticFunction; });
+const ticFunction = (dispatch) => {
+    return (id, text) => {
+        return () => {
+            dispatch({ type: 'SQUARE_CLICKED', id: id, text: text });
+        }
+    }
+}
+
+
+
+/***/ }),
+/* 40 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__square_squareReducer__ = __webpack_require__(12);
 
 
 
 const initialState = [
-  Object(__WEBPACK_IMPORTED_MODULE_1__square_squareReducer__["squareBuilder"])(1, '_'), Object(__WEBPACK_IMPORTED_MODULE_1__square_squareReducer__["squareBuilder"])(2, '_'), Object(__WEBPACK_IMPORTED_MODULE_1__square_squareReducer__["squareBuilder"])(3, '_'),
-  Object(__WEBPACK_IMPORTED_MODULE_1__square_squareReducer__["squareBuilder"])(4, '_'), Object(__WEBPACK_IMPORTED_MODULE_1__square_squareReducer__["squareBuilder"])(5, '_'), Object(__WEBPACK_IMPORTED_MODULE_1__square_squareReducer__["squareBuilder"])(6, '_'),
-  Object(__WEBPACK_IMPORTED_MODULE_1__square_squareReducer__["squareBuilder"])(7, '_'), Object(__WEBPACK_IMPORTED_MODULE_1__square_squareReducer__["squareBuilder"])(8, '_'), Object(__WEBPACK_IMPORTED_MODULE_1__square_squareReducer__["squareBuilder"])(9, '_')  
+  Object(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* squareBuilder */])(1, '_'), Object(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* squareBuilder */])(2, '_'), Object(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* squareBuilder */])(3, '_'),
+  Object(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* squareBuilder */])(4, '_'), Object(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* squareBuilder */])(5, '_'), Object(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* squareBuilder */])(6, '_'),
+  Object(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* squareBuilder */])(7, '_'), Object(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* squareBuilder */])(8, '_'), Object(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* squareBuilder */])(9, '_')  
 ]
 
 const boardReducer = (state = initialState, action) => {
@@ -2410,29 +2426,12 @@ const boardReducer = (state = initialState, action) => {
   switch (action.type) {
     default:
       return state.map((square) => {
-        return Object(__WEBPACK_IMPORTED_MODULE_1__square_squareReducer__["squareReducer"])(square, action);
+        return Object(__WEBPACK_IMPORTED_MODULE_1__square_squareReducer__["default"])(square, action);
       });
   }
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (boardReducer);
-
-
-/***/ }),
-/* 40 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-const toggleSquare = (text) => {
-  switch (text) {
-    case '_': return 'x';
-    case 'x': return 'o';
-    case 'o': return '_';
-    default: return '_';
-  }
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (toggleSquare);
 
 
 /***/ }),

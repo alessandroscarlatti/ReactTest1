@@ -1,5 +1,5 @@
-import toggleSquare from '../actions/index.js';
-import { squareBuilder, squareReducer } from '../square/squareReducer'
+import { squareBuilder, toggleSquare } from '../utils';
+import squareReducer from '../square/squareReducer'
 
 const initialState = [
   squareBuilder(1, '_'), squareBuilder(2, '_'), squareBuilder(3, '_'),

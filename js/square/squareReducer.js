@@ -1,8 +1,4 @@
-import toggleSquare from '../board/boardActions.js';
-
-const squareBuilder = (id, text) => {
-    return { id, text }
-}
+import { squareBuilder, toggleSquare } from '../utils';
 
 const initialState = {
     id: 1,
@@ -20,4 +16,4 @@ const squareReducer = (state = initialState, action) => {
     }
 }
 
-export {squareBuilder, squareReducer}
+export default squareReducer
