@@ -1,28 +1,33 @@
-import toggleSquare from './boardActions.js'
+import { squareBuilder, toggleSquare } from '../utils';
+import squareReducer from '../square/squareReducer'
 
-const boardReducer = (state = [
-    {id: 1, text: '_' }, {id: 2, text: '_' }, {id: 3, text: '_' },
-    {id: 4, text: '_' }, {id: 5, text: '_' }, {id: 6, text: '_' },
-    {id: 7, text: '_' }, {id: 8, text: '_' }, {id: 9, text: '_' }
-  ], action) => {
+// TODO would turn this into a function
+const initialState = [
+  squareBuilder(0, '_'), squareBuilder(1, '_'), squareBuilder(2, '_'),
+  squareBuilder(3, '_'), squareBuilder(4, '_'), squareBuilder(5, '_'),
+  squareBuilder(6, '_'), squareBuilder(7, '_'), squareBuilder(8, '_')  
+]
 
-  console.log("boardReducer called with state and action..."); console.log(state); console.log(action);
+// would turn this into a reducer generator??
+const boardReducer = (state = initialState, action) => {
+
+  console.log("boardReducer called with state and action..."); 
+  console.log(state); 
 
   switch (action.type) {
-    case 'SQUARE_CLICKED':
-      console.log('square' + action.id + 'clicked!')
-      let newState = state.map((i) => {
-        console.log('mapping item:')
-        console.log(i)
-        return i.id === action.id ? Object.assign({}, i, { text: toggleSquare(action.text), id: action.id }) : i
-      });
-
-      console.log("new boardState: "); console.log(newState);
-      return newState;
-
+    case 'RESIZE_BOARD':
+      let squares = [];
+      for (let s = 0; s < action.width * action.height; s++) {
+        squares.push(squareBuilder(s, '_'))
+      }
+      return squares.map((square) => {
+        return squareReducer(square, action);
+      })
     default:
-      return state;
+      return state.map((square) => {
+        return squareReducer(square, action);
+      });
   }
-}
+};
 
 export default boardReducer;

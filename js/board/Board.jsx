@@ -1,5 +1,5 @@
 import React from 'react';
-import Square from '../square/Square.jsx';
+import Row from '../row/Row'
 
 class Board extends React.Component {
 
@@ -7,34 +7,42 @@ class Board extends React.Component {
     super(props)
     this.state = {
       tic: props.tic,
-      boardState: props.boardState
+      squares: props.squares,
+      width: props.options.width,
+      height: props.options.height,
     }
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      boardState: nextProps.boardState
+      squares: nextProps.squares,
+      width: nextProps.options.width,
+      height: nextProps.options.height,
     })
   }
 
   render() {
 
     console.log("this.state.boardState is:");
-    console.log(this.state.boardState);
+    console.log(this.state.squares);
+
+    var rows = [];
+
+    for (let r = 0; r < this.state.height; r++) {
+      rows.push(<Row 
+        rowId={r} 
+        tic={this.state.tic} 
+        width={this.state.width}
+        squares={this.state.squares} 
+      />)
+    }
 
 
     return (
-      <table onclick={this.state.tic}>
+
+      <table>
         <tbody>
-          <tr>
-            <td><Square tic={this.state.tic} square={this.state.boardState[0]} /></td><td><Square tic={this.state.tic} square={this.state.boardState[1]} /></td><td><Square tic={this.state.tic} square={this.state.boardState[2]} /></td>
-          </tr>
-          <tr>
-            <td><Square tic={this.state.tic} square={this.state.boardState[3]}  /></td><td><Square tic={this.state.tic} square={this.state.boardState[4]}  /></td><td><Square tic={this.state.tic} square={this.state.boardState[5]}  /></td>
-          </tr>
-          <tr>
-            <td><Square tic={this.state.tic} square={this.state.boardState[6]}  /></td><td><Square tic={this.state.tic} square={this.state.boardState[7]} /></td><td><Square tic={this.state.tic} square={this.state.boardState[8]}  /></td>
-          </tr>
+          {rows}
         </tbody>
       </table>
     )

@@ -1,4 +1,5 @@
 import React from 'react';
+import squareStyles from './squareStyles.scss'
 
 class Square extends React.Component {
 
@@ -21,7 +22,8 @@ class Square extends React.Component {
 
   componentWillReceiveProps(nextProps) {
 
-    console.log("will receive Props"); console.log(nextProps);
+    console.log("will receive Props"); 
+    console.log(nextProps);
 
     this.setState({
       click: nextProps.tic(nextProps.square.id, nextProps.square.text),
@@ -32,12 +34,20 @@ class Square extends React.Component {
 
   render() {
 
-    const squareStyle = {
-      fontSize: '128px'
-    }
+    // const squareStyle = {
+    //   fontSize: '128px'
+    // }
+
+/*<span className={square.square} style={squareStyle} onClick={this.state.click}>{this.state.text}</span>*/
+
+    console.log("square style:");
+    console.log(squareStyles);
 
     return (
-      <span style={squareStyle} onClick={this.state.click}>{this.state.text}</span>
+      <span className={squareStyles.squareStyle} 
+        onClick={this.state.click}>
+          {this.state.text}
+      </span>
     )
   }
 }
