@@ -1,5 +1,6 @@
 import { createStore, combineReducers } from 'redux';
 import App from './app/App';
+import optionsReducer from './appOptions/optionsReducer';
 import boardReducer from './board/boardReducer';
 import { squareReducer } from './square/squareReducer';
 import ReactDOM from 'react-dom';
@@ -16,6 +17,7 @@ console.log("index.js loaded!");
 // In addition, connect the store to the Redux devTools Chrome extension.
 const store = createStore(
   combineReducers({
+      options: optionsReducer,
       squares: boardReducer
   }),
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()

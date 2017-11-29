@@ -124,9 +124,32 @@ module.exports = emptyFunction;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "squareBuilder", function() { return squareBuilder; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toggleSquare", function() { return toggleSquare; });
+const squareBuilder = (id, text) => {
+    return { id, text }
+}
+
+const toggleSquare = (text) => {
+    switch (text) {
+      case '_': return 'x';
+      case 'x': return 'o';
+      case 'o': return '_';
+      default: return '_';
+    }
+  };
+  
+  
+
+/***/ }),
+/* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ActionTypes; });
 /* harmony export (immutable) */ __webpack_exports__["b"] = createStore;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash_es_isPlainObject__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash_es_isPlainObject__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_symbol_observable__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_symbol_observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_symbol_observable__);
 
@@ -379,7 +402,7 @@ var ActionTypes = {
 }
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -451,7 +474,7 @@ function isPlainObject(value) {
 
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -465,7 +488,7 @@ var Symbol = __WEBPACK_IMPORTED_MODULE_0__root_js__["a" /* default */].Symbol;
 
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports) {
 
 var g;
@@ -492,7 +515,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -520,7 +543,7 @@ function warning(message) {
 }
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -559,7 +582,7 @@ function compose() {
 }
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -656,7 +679,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -679,7 +702,7 @@ if (false) {
 module.exports = emptyObject;
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -738,49 +761,24 @@ function invariant(condition, format, a, b, c, d, e, f) {
 module.exports = invariant;
 
 /***/ }),
-/* 11 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return squareBuilder; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return toggleSquare; });
-const squareBuilder = (id, text) => {
-    return { id, text }
-}
-
-const toggleSquare = (text) => {
-    switch (text) {
-      case '_': return 'x';
-      case 'x': return 'o';
-      case 'o': return '_';
-      default: return '_';
-    }
-  };
-  
-  
-
-/***/ }),
 /* 12 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils__ = __webpack_require__(2);
 
 
-const initialState = {
-    id: 1,
-    text: '_'
-}
+const initialState = Object(__WEBPACK_IMPORTED_MODULE_0__utils__["squareBuilder"])(0, '_');
 
 const squareReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'SQUARE_CLICKED':
             if (action.id === state.id)
-                return Object(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* squareBuilder */])(action.id, Object(__WEBPACK_IMPORTED_MODULE_0__utils__["b" /* toggleSquare */])(action.text))
+                return Object(__WEBPACK_IMPORTED_MODULE_0__utils__["squareBuilder"])(action.id, Object(__WEBPACK_IMPORTED_MODULE_0__utils__["toggleSquare"])(action.text))
 
         default:
-            return Object(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* squareBuilder */])(state.id, state.text);
+            return Object(__WEBPACK_IMPORTED_MODULE_0__utils__["squareBuilder"])(state.id, state.text);
     }
 }
 
@@ -801,13 +799,17 @@ var _App = __webpack_require__(30);
 
 var _App2 = _interopRequireDefault(_App);
 
-var _boardReducer = __webpack_require__(40);
+var _optionsReducer = __webpack_require__(42);
+
+var _optionsReducer2 = _interopRequireDefault(_optionsReducer);
+
+var _boardReducer = __webpack_require__(43);
 
 var _boardReducer2 = _interopRequireDefault(_boardReducer);
 
 var _squareReducer = __webpack_require__(12);
 
-var _reactDom = __webpack_require__(41);
+var _reactDom = __webpack_require__(44);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -827,6 +829,7 @@ console.log("index.js loaded!");
 // the BoardReducer.
 // In addition, connect the store to the Redux devTools Chrome extension.
 var store = (0, _redux.createStore)((0, _redux.combineReducers)({
+  options: _optionsReducer2.default,
   squares: _boardReducer2.default
 }), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
@@ -863,12 +866,12 @@ renderApp();
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createStore__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createStore__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__combineReducers__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bindActionCreators__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__applyMiddleware__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__compose__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_warning__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__compose__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_warning__ = __webpack_require__(7);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "createStore", function() { return __WEBPACK_IMPORTED_MODULE_0__createStore__["b"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "combineReducers", function() { return __WEBPACK_IMPORTED_MODULE_1__combineReducers__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "bindActionCreators", function() { return __WEBPACK_IMPORTED_MODULE_2__bindActionCreators__["a"]; });
@@ -898,7 +901,7 @@ if (false) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Symbol_js__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Symbol_js__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getRawTag_js__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__objectToString_js__ = __webpack_require__(19);
 
@@ -958,14 +961,14 @@ var freeGlobal = typeof global == 'object' && global && global.Object === Object
 
 /* harmony default export */ __webpack_exports__["a"] = (freeGlobal);
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(5)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(6)))
 
 /***/ }),
 /* 18 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Symbol_js__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Symbol_js__ = __webpack_require__(5);
 
 
 /** Used for built-in method references. */
@@ -1156,7 +1159,7 @@ if (typeof self !== 'undefined') {
 
 var result = (0, _ponyfill2['default'])(root);
 exports['default'] = result;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5), __webpack_require__(25)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6), __webpack_require__(25)(module)))
 
 /***/ }),
 /* 25 */
@@ -1221,9 +1224,9 @@ function symbolObservablePonyfill(root) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = combineReducers;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createStore__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash_es_isPlainObject__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_warning__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createStore__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash_es_isPlainObject__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_warning__ = __webpack_require__(7);
 
 
 
@@ -1415,7 +1418,7 @@ function bindActionCreators(actionCreators, dispatch) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = applyMiddleware;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__compose__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__compose__ = __webpack_require__(8);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 
@@ -1482,11 +1485,15 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Board = __webpack_require__(32);
+var _AppOptions = __webpack_require__(32);
+
+var _AppOptions2 = _interopRequireDefault(_AppOptions);
+
+var _Board = __webpack_require__(33);
 
 var _Board2 = _interopRequireDefault(_Board);
 
-var _index = __webpack_require__(39);
+var _index = __webpack_require__(41);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1505,7 +1512,9 @@ var App = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
     _this.state = {
+      resizeBoard: (0, _index.resizeBoard)(props.dispatch),
       tic: (0, _index.ticFunction)(props.dispatch),
+      options: props.reduxState.options,
       squares: props.reduxState.squares
     };
     return _this;
@@ -1515,16 +1524,21 @@ var App = function (_React$Component) {
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(nextProps) {
       this.setState({
-        squares: nextProps.reduxState.squares
+        squares: nextProps.reduxState.squares,
+        options: nextProps.reduxState.options
       });
     }
+
+    // App will now contain a button to refresh the size of the board
+
   }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
         'span',
         null,
-        _react2.default.createElement(_Board2.default, { tic: this.state.tic, squares: this.state.squares })
+        _react2.default.createElement(_AppOptions2.default, { resizeBoard: this.state.resizeBoard, options: this.state.options }),
+        _react2.default.createElement(_Board2.default, { tic: this.state.tic, squares: this.state.squares, options: this.state.options })
       );
     }
   }]);
@@ -1548,7 +1562,7 @@ exports.default = App;
  This source code is licensed under the MIT license found in the
  LICENSE file in the root directory of this source tree.
 */
-var f=__webpack_require__(8),p=__webpack_require__(9);__webpack_require__(10);var r=__webpack_require__(1);
+var f=__webpack_require__(9),p=__webpack_require__(10);__webpack_require__(11);var r=__webpack_require__(1);
 function t(a){for(var b=arguments.length-1,d="Minified React error #"+a+"; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d"+a,e=0;e<b;e++)d+="\x26args[]\x3d"+encodeURIComponent(arguments[e+1]);b=Error(d+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.");b.name="Invariant Violation";b.framesToPop=1;throw b;}
 var u={isMounted:function(){return!1},enqueueForceUpdate:function(){},enqueueReplaceState:function(){},enqueueSetState:function(){}};function v(a,b,d){this.props=a;this.context=b;this.refs=p;this.updater=d||u}v.prototype.isReactComponent={};v.prototype.setState=function(a,b){"object"!==typeof a&&"function"!==typeof a&&null!=a?t("85"):void 0;this.updater.enqueueSetState(this,a,b,"setState")};v.prototype.forceUpdate=function(a){this.updater.enqueueForceUpdate(this,a,"forceUpdate")};
 function w(a,b,d){this.props=a;this.context=b;this.refs=p;this.updater=d||u}function x(){}x.prototype=v.prototype;var y=w.prototype=new x;y.constructor=w;f(y,v.prototype);y.isPureReactComponent=!0;function z(a,b,d){this.props=a;this.context=b;this.refs=p;this.updater=d||u}var A=z.prototype=new x;A.constructor=z;f(A,v.prototype);A.unstable_isAsyncReactComponent=!0;A.render=function(){return this.props.children};
@@ -1572,6 +1586,136 @@ module.exports={Children:{map:S.map,forEach:S.forEach,count:S.count,toArray:S.to
 
 
 Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var AppOptions = function (_React$Component) {
+    _inherits(AppOptions, _React$Component);
+
+    function AppOptions(props) {
+        _classCallCheck(this, AppOptions);
+
+        var _this = _possibleConstructorReturn(this, (AppOptions.__proto__ || Object.getPrototypeOf(AppOptions)).call(this, props));
+
+        _this.state = {
+            resizeBoard: props.resizeBoard,
+            width: props.options.width,
+            height: props.options.height
+        };
+        return _this;
+    }
+
+    _createClass(AppOptions, [{
+        key: "componentWillReceiveProps",
+        value: function componentWillReceiveProps(nextProps) {
+            this.setState({
+                resizeBoard: nextProps.resizeBoard,
+                width: nextProps.options.width,
+                height: nextProps.options.height
+            });
+        }
+    }, {
+        key: "handleNewWidth",
+        value: function handleNewWidth(event) {
+            this.setState({
+                width: event.target.value
+            });
+        }
+
+        // settings will contain two boxes, one for height, one for depth
+        // and a button to submit the new size
+
+    }, {
+        key: "render",
+        value: function render() {
+            var _this2 = this;
+
+            return _react2.default.createElement(
+                "span",
+                null,
+                _react2.default.createElement(
+                    "div",
+                    { "class": "form-group" },
+                    _react2.default.createElement(
+                        "label",
+                        { "for": "width" },
+                        "Width:"
+                    ),
+                    _react2.default.createElement("input", {
+                        ref: "width",
+                        "class": "form-control",
+                        type: "text",
+                        id: "width",
+                        value: this.state.width,
+                        onChange: function onChange(e) {
+                            return _this2.setState({
+                                width: e.target.value
+                            });
+                        }
+                    })
+                ),
+                _react2.default.createElement(
+                    "div",
+                    { "class": "form-group" },
+                    _react2.default.createElement(
+                        "label",
+                        { "for": "height" },
+                        "Height:"
+                    ),
+                    _react2.default.createElement("input", {
+                        ref: "height",
+                        "class": "form-control",
+                        type: "text",
+                        id: "height",
+                        value: this.state.height,
+                        onChange: function onChange(e) {
+                            return _this2.setState({
+                                height: e.target.value
+                            });
+                        } })
+                ),
+                _react2.default.createElement(
+                    "button",
+                    { "class": "btn btn-default",
+                        onClick: this.state.resizeBoard(function () {
+                            return _this2.refs.width.value;
+                        }, function () {
+                            return _this2.refs.height.value;
+                        })
+                    },
+                    "New Board!"
+                )
+            );
+        }
+    }]);
+
+    return AppOptions;
+}(_react2.default.Component);
+
+exports.default = AppOptions;
+
+/***/ }),
+/* 33 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
@@ -1581,9 +1725,9 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Square = __webpack_require__(33);
+var _Row = __webpack_require__(34);
 
-var _Square2 = _interopRequireDefault(_Square);
+var _Row2 = _interopRequireDefault(_Row);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1603,7 +1747,9 @@ var Board = function (_React$Component) {
 
     _this.state = {
       tic: props.tic,
-      squares: props.squares
+      squares: props.squares,
+      width: props.options.width,
+      height: props.options.height
     };
     return _this;
   }
@@ -1612,7 +1758,9 @@ var Board = function (_React$Component) {
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(nextProps) {
       this.setState({
-        squares: nextProps.squares
+        squares: nextProps.squares,
+        width: nextProps.options.width,
+        height: nextProps.options.height
       });
     }
   }, {
@@ -1622,69 +1770,24 @@ var Board = function (_React$Component) {
       console.log("this.state.boardState is:");
       console.log(this.state.squares);
 
+      var rows = [];
+
+      for (var r = 0; r < this.state.height; r++) {
+        rows.push(_react2.default.createElement(_Row2.default, {
+          rowId: r,
+          tic: this.state.tic,
+          width: this.state.width,
+          squares: this.state.squares
+        }));
+      }
+
       return _react2.default.createElement(
         'table',
         null,
         _react2.default.createElement(
           'tbody',
           null,
-          _react2.default.createElement(
-            'tr',
-            null,
-            _react2.default.createElement(
-              'td',
-              null,
-              _react2.default.createElement(_Square2.default, { tic: this.state.tic, square: this.state.squares[0] })
-            ),
-            _react2.default.createElement(
-              'td',
-              null,
-              _react2.default.createElement(_Square2.default, { tic: this.state.tic, square: this.state.squares[1] })
-            ),
-            _react2.default.createElement(
-              'td',
-              null,
-              _react2.default.createElement(_Square2.default, { tic: this.state.tic, square: this.state.squares[2] })
-            )
-          ),
-          _react2.default.createElement(
-            'tr',
-            null,
-            _react2.default.createElement(
-              'td',
-              null,
-              _react2.default.createElement(_Square2.default, { tic: this.state.tic, square: this.state.squares[3] })
-            ),
-            _react2.default.createElement(
-              'td',
-              null,
-              _react2.default.createElement(_Square2.default, { tic: this.state.tic, square: this.state.squares[4] })
-            ),
-            _react2.default.createElement(
-              'td',
-              null,
-              _react2.default.createElement(_Square2.default, { tic: this.state.tic, square: this.state.squares[5] })
-            )
-          ),
-          _react2.default.createElement(
-            'tr',
-            null,
-            _react2.default.createElement(
-              'td',
-              null,
-              _react2.default.createElement(_Square2.default, { tic: this.state.tic, square: this.state.squares[6] })
-            ),
-            _react2.default.createElement(
-              'td',
-              null,
-              _react2.default.createElement(_Square2.default, { tic: this.state.tic, square: this.state.squares[7] })
-            ),
-            _react2.default.createElement(
-              'td',
-              null,
-              _react2.default.createElement(_Square2.default, { tic: this.state.tic, square: this.state.squares[8] })
-            )
-          )
+          rows
         )
       );
     }
@@ -1696,7 +1799,7 @@ var Board = function (_React$Component) {
 exports.default = Board;
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1712,7 +1815,96 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _squareStyles = __webpack_require__(34);
+var _Square = __webpack_require__(35);
+
+var _Square2 = _interopRequireDefault(_Square);
+
+var _utils = __webpack_require__(2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Row = function (_React$Component) {
+  _inherits(Row, _React$Component);
+
+  function Row(props) {
+    _classCallCheck(this, Row);
+
+    var _this = _possibleConstructorReturn(this, (Row.__proto__ || Object.getPrototypeOf(Row)).call(this, props));
+
+    _this.state = {
+      tic: props.tic,
+      rowId: props.rowId,
+      width: props.width,
+      squares: props.squares
+    };
+    return _this;
+  }
+
+  _createClass(Row, [{
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+
+      console.log("will receive Props");
+      console.log(nextProps);
+
+      this.setState({
+        tic: nextProps.tic,
+        rowId: nextProps.rowId,
+        width: nextProps.width,
+        squares: nextProps.squares
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+
+      var squares = [];
+
+      for (var s = 0; s < this.state.width; s++) {
+        var id = this.state.rowId * this.state.width + s;
+        squares.push(_react2.default.createElement(_Square2.default, {
+          square: (0, _utils.squareBuilder)(id, this.state.squares[id].text),
+          tic: this.state.tic
+        }));
+      }
+
+      return _react2.default.createElement(
+        'tr',
+        null,
+        squares
+      );
+    }
+  }]);
+
+  return Row;
+}(_react2.default.Component);
+
+exports.default = Row;
+
+/***/ }),
+/* 35 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _squareStyles = __webpack_require__(36);
 
 var _squareStyles2 = _interopRequireDefault(_squareStyles);
 
@@ -1789,13 +1981,13 @@ var Square = function (_React$Component) {
 exports.default = Square;
 
 /***/ }),
-/* 34 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(35);
+var content = __webpack_require__(37);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -1803,7 +1995,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(37)(content, options);
+var update = __webpack_require__(39)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -1820,10 +2012,10 @@ if(false) {
 }
 
 /***/ }),
-/* 35 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(36)(undefined);
+exports = module.exports = __webpack_require__(38)(undefined);
 // imports
 
 
@@ -1836,7 +2028,7 @@ exports.locals = {
 };
 
 /***/ }),
-/* 36 */
+/* 38 */
 /***/ (function(module, exports) {
 
 /*
@@ -1918,7 +2110,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 37 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -1974,7 +2166,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(38);
+var	fixUrls = __webpack_require__(40);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -2290,7 +2482,7 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 38 */
+/* 40 */
 /***/ (function(module, exports) {
 
 
@@ -2385,16 +2577,33 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 39 */
+/* 41 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ticFunction", function() { return ticFunction; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "resizeBoard", function() { return resizeBoard; });
 const ticFunction = (dispatch) => {
     return (id, text) => {
         return () => {
-            dispatch({ type: 'SQUARE_CLICKED', id: id, text: text });
+            dispatch({ 
+                type: 'SQUARE_CLICKED', 
+                id: id, 
+                text: text 
+            });
+        }
+    }
+}
+
+const resizeBoard = (dispatch) => {
+    return (width, height) => {
+        return () => {
+            dispatch({ 
+                type: 'RESIZE_BOARD', 
+                width: width(), 
+                height: height() 
+            })
         }
     }
 }
@@ -2402,28 +2611,67 @@ const ticFunction = (dispatch) => {
 
 
 /***/ }),
-/* 40 */
+/* 42 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils__ = __webpack_require__(11);
+const initialState = {
+    width: 3,
+    height: 3
+}
+
+const optionsReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case 'RESIZE_BOARD':
+      return {
+          width: action.width,
+          height: action.height
+      }
+    default:
+      return {
+        width: state.width,
+        height: state.height    
+      }
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (optionsReducer);
+
+
+/***/ }),
+/* 43 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__square_squareReducer__ = __webpack_require__(12);
 
 
 
+// TODO would turn this into a function
 const initialState = [
-  Object(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* squareBuilder */])(1, '_'), Object(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* squareBuilder */])(2, '_'), Object(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* squareBuilder */])(3, '_'),
-  Object(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* squareBuilder */])(4, '_'), Object(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* squareBuilder */])(5, '_'), Object(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* squareBuilder */])(6, '_'),
-  Object(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* squareBuilder */])(7, '_'), Object(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* squareBuilder */])(8, '_'), Object(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* squareBuilder */])(9, '_')  
+  Object(__WEBPACK_IMPORTED_MODULE_0__utils__["squareBuilder"])(0, '_'), Object(__WEBPACK_IMPORTED_MODULE_0__utils__["squareBuilder"])(1, '_'), Object(__WEBPACK_IMPORTED_MODULE_0__utils__["squareBuilder"])(2, '_'),
+  Object(__WEBPACK_IMPORTED_MODULE_0__utils__["squareBuilder"])(3, '_'), Object(__WEBPACK_IMPORTED_MODULE_0__utils__["squareBuilder"])(4, '_'), Object(__WEBPACK_IMPORTED_MODULE_0__utils__["squareBuilder"])(5, '_'),
+  Object(__WEBPACK_IMPORTED_MODULE_0__utils__["squareBuilder"])(6, '_'), Object(__WEBPACK_IMPORTED_MODULE_0__utils__["squareBuilder"])(7, '_'), Object(__WEBPACK_IMPORTED_MODULE_0__utils__["squareBuilder"])(8, '_')  
 ]
 
+// would turn this into a reducer generator??
 const boardReducer = (state = initialState, action) => {
 
   console.log("boardReducer called with state and action..."); 
   console.log(state); 
 
   switch (action.type) {
+    case 'RESIZE_BOARD':
+      let squares = [];
+      for (let s = 0; s < action.width * action.height; s++) {
+        squares.push(Object(__WEBPACK_IMPORTED_MODULE_0__utils__["squareBuilder"])(s, '_'))
+      }
+      return squares.map((square) => {
+        return Object(__WEBPACK_IMPORTED_MODULE_1__square_squareReducer__["default"])(square, action);
+      })
     default:
       return state.map((square) => {
         return Object(__WEBPACK_IMPORTED_MODULE_1__square_squareReducer__["default"])(square, action);
@@ -2435,7 +2683,7 @@ const boardReducer = (state = initialState, action) => {
 
 
 /***/ }),
-/* 41 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2473,14 +2721,14 @@ if (true) {
   // DCE check should happen before ReactDOM bundle executes so that
   // DevTools can report bad minification during injection.
   checkDCE();
-  module.exports = __webpack_require__(42);
+  module.exports = __webpack_require__(45);
 } else {
   module.exports = require('./cjs/react-dom.development.js');
 }
 
 
 /***/ }),
-/* 42 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2494,7 +2742,7 @@ if (true) {
  LICENSE file in the root directory of this source tree.
  Modernizr 3.0.0pre (Custom Build) | MIT
 */
-var aa=__webpack_require__(0);__webpack_require__(10);var l=__webpack_require__(43),n=__webpack_require__(8),ba=__webpack_require__(44),ca=__webpack_require__(1),da=__webpack_require__(9),ea=__webpack_require__(45),fa=__webpack_require__(46),ha=__webpack_require__(49),ia=__webpack_require__(50);
+var aa=__webpack_require__(0);__webpack_require__(11);var l=__webpack_require__(46),n=__webpack_require__(9),ba=__webpack_require__(47),ca=__webpack_require__(1),da=__webpack_require__(10),ea=__webpack_require__(48),fa=__webpack_require__(49),ha=__webpack_require__(52),ia=__webpack_require__(53);
 function w(a){for(var b=arguments.length-1,c="Minified React error #"+a+"; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d"+a,d=0;d<b;d++)c+="\x26args[]\x3d"+encodeURIComponent(arguments[d+1]);b=Error(c+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.");b.name="Invariant Violation";b.framesToPop=1;throw b;}aa?void 0:w("227");
 function ja(a){switch(a){case "svg":return"http://www.w3.org/2000/svg";case "math":return"http://www.w3.org/1998/Math/MathML";default:return"http://www.w3.org/1999/xhtml"}}
 var ka={Namespaces:{html:"http://www.w3.org/1999/xhtml",mathml:"http://www.w3.org/1998/Math/MathML",svg:"http://www.w3.org/2000/svg"},getIntrinsicNamespace:ja,getChildNamespace:function(a,b){return null==a||"http://www.w3.org/1999/xhtml"===a?ja(b):"http://www.w3.org/2000/svg"===a&&"foreignObject"===b?"http://www.w3.org/1999/xhtml":a}},la=null,oa={};
@@ -2743,7 +2991,7 @@ unstable_deferredUpdates:Xj.deferredUpdates,flushSync:Xj.flushSync,__SECRET_INTE
 
 
 /***/ }),
-/* 43 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2782,7 +3030,7 @@ var ExecutionEnvironment = {
 module.exports = ExecutionEnvironment;
 
 /***/ }),
-/* 44 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2862,7 +3110,7 @@ var EventListener = {
 module.exports = EventListener;
 
 /***/ }),
-/* 45 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2933,7 +3181,7 @@ function shallowEqual(objA, objB) {
 module.exports = shallowEqual;
 
 /***/ }),
-/* 46 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2948,7 +3196,7 @@ module.exports = shallowEqual;
  * 
  */
 
-var isTextNode = __webpack_require__(47);
+var isTextNode = __webpack_require__(50);
 
 /*eslint-disable no-bitwise */
 
@@ -2976,7 +3224,7 @@ function containsNode(outerNode, innerNode) {
 module.exports = containsNode;
 
 /***/ }),
-/* 47 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2991,7 +3239,7 @@ module.exports = containsNode;
  * @typechecks
  */
 
-var isNode = __webpack_require__(48);
+var isNode = __webpack_require__(51);
 
 /**
  * @param {*} object The object to check.
@@ -3004,7 +3252,7 @@ function isTextNode(object) {
 module.exports = isTextNode;
 
 /***/ }),
-/* 48 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3032,7 +3280,7 @@ function isNode(object) {
 module.exports = isNode;
 
 /***/ }),
-/* 49 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3062,7 +3310,7 @@ function focusNode(node) {
 module.exports = focusNode;
 
 /***/ }),
-/* 50 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

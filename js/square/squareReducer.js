@@ -1,9 +1,6 @@
 import { squareBuilder, toggleSquare } from '../utils';
 
-const initialState = {
-    id: 1,
-    text: '_'
-}
+const initialState = squareBuilder(0, '_');
 
 const squareReducer = (state = initialState, action) => {
     switch (action.type) {
