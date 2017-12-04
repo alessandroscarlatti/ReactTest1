@@ -3,9 +3,9 @@ import squareReducer from '../square/squareReducer'
 
 // TODO would turn this into a function
 const initialState = [
-  squareBuilder(0, '_'), squareBuilder(1, '_'), squareBuilder(2, '_'),
-  squareBuilder(3, '_'), squareBuilder(4, '_'), squareBuilder(5, '_'),
-  squareBuilder(6, '_'), squareBuilder(7, '_'), squareBuilder(8, '_')  
+  squareBuilder(0, ' '), squareBuilder(1, ' '), squareBuilder(2, ' '),
+  squareBuilder(3, ' '), squareBuilder(4, ' '), squareBuilder(5, ' '),
+  squareBuilder(6, ' '), squareBuilder(7, ' '), squareBuilder(8, ' ')  
 ]
 
 // would turn this into a reducer generator??
@@ -18,7 +18,7 @@ const boardReducer = (state = initialState, action) => {
     case 'RESIZE_BOARD':
       let squares = [];
       for (let s = 0; s < action.width * action.height; s++) {
-        squares.push(squareBuilder(s, '_'))
+        squares.push(squareBuilder(s, ' '))
       }
       return squares.map((square) => {
         return squareReducer(square, action);

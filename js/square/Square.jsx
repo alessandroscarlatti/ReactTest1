@@ -44,10 +44,9 @@ class Square extends React.Component {
     console.log(squareStyles);
 
     return (
-      <span className={squareStyles.squareStyle} 
-        onClick={this.state.click}>
-          {this.state.text}
-      </span>
+      <td className={"border border-secondary " + squareStyles.squareStyle} onClick={this.state.click}>
+        {this.state.text}
+      </td>
     )
   }
 }

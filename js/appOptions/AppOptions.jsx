@@ -1,4 +1,5 @@
 import React from 'react';
+import optionsStyles from './appOptionsStyles.scss'
 
 class AppOptions extends React.Component {
 
@@ -29,12 +30,12 @@ class AppOptions extends React.Component {
   // and a button to submit the new size
   render() {
     return (
-      <span>
-            <div class="form-group">
+      <div class="well">
+            <div className={optionsStyles.optionsStyle}>
                 <label for="width">Width:</label>
                 <input 
                     ref="width" 
-                    class="form-control" 
+                    class="form-control input-sm" 
                     type="text" 
                     id="width" 
                     value={this.state.width}
@@ -43,11 +44,11 @@ class AppOptions extends React.Component {
                     })}
                 />
             </div>
-            <div class="form-group">
+            <div className={optionsStyles.optionsStyle}>
                 <label for="height">Height:</label>
                 <input 
                     ref="height" 
-                    class="form-control" 
+                    class="form-control input-sm" 
                     type="text" 
                     id="height" 
                     value={this.state.height}
@@ -57,12 +58,14 @@ class AppOptions extends React.Component {
             </div>
             
             {/* TODO React recommends using a callback pattern, rather than string refs... */}
-            <button class="btn btn-default" 
-                onClick={this.state.resizeBoard(
-                    () => this.refs.width.value, () => this.refs.height.value
-                )}
-            >New Board!</button>
-      </span>
+            <div>
+                <button class="btn btn-default" 
+                    onClick={this.state.resizeBoard(
+                        () => this.refs.width.value, () => this.refs.height.value
+                    )}
+                >New Board!</button>
+            </div>
+      </div>
     )
   }
 }

@@ -4,10 +4,10 @@ const squareBuilder = (id, text) => {
 
 const toggleSquare = (text) => {
     switch (text) {
-      case '_': return 'x';
+      case ' ': return 'x';
       case 'x': return 'o';
-      case 'o': return '_';
-      default: return '_';
+      case 'o': return ' ';
+      default: return ' ';
     }
   };
   
