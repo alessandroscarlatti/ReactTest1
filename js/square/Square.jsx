@@ -14,9 +14,9 @@ class Square extends React.Component {
     console.log("tic === undefined"); console.log(tic === undefined);
 
     this.state = {
-      click: tic,
-      text: props.square.text,
-      id: props.square.id
+      click: tic(this.props.id, this.props.square.type),
+      id: this.props.id,
+      square: this.props.square,
     }
   }
 
@@ -26,9 +26,9 @@ class Square extends React.Component {
     console.log(nextProps);
 
     this.setState({
-      click: nextProps.tic(nextProps.square.id, nextProps.square.text),
-      text: nextProps.square.text,
-      id: nextProps.square.id
+      click: nextProps.tic(nextProps.id, nextProps.square.type),
+      id: nextProps.id,
+      square: nextProps.square,
     })
   }
 
@@ -43,9 +43,13 @@ class Square extends React.Component {
     console.log("square style:");
     console.log(squareStyles);
 
+// {this.state.square.style + " " + squareStyles.squareStyle}
+
     return (
-      <td className={"border border-secondary " + squareStyles.squareStyle} onClick={this.state.click}>
-        {this.state.text}
+      <td>
+        <div className={`glyphicon glyphicon-certificate ${this.state.square.style} ${squareStyles.squareStyle}`} onClick={this.state.click}>
+          {this.state.square.text}
+        </div>
       </td>
     )
   }

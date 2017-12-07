@@ -35,7 +35,8 @@ class Row extends React.Component {
     for (let s = 0; s < this.state.width; s++) {
         let id = this.state.rowId * this.state.width + s
         squares.push(<Square 
-            square={squareBuilder(id, this.state.squares[id].text)}
+            id={id}
+            square={this.state.squares[id].type}
             tic={this.state.tic}
         />)
     }

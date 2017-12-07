@@ -1,10 +1,10 @@
 const ticFunction = (dispatch) => {
-    return (id, text) => {
+    return (id, squareType) => {
         return () => {
             dispatch({ 
                 type: 'SQUARE_CLICKED', 
                 id: id, 
-                text: text 
+                squareType: squareType, 
             });
         }
     }
