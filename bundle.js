@@ -2685,7 +2685,7 @@ exports = module.exports = __webpack_require__(13)(undefined);
 
 
 // module
-exports.push([module.i, "._2ZF2B5lMO-MdoECoRxhiQ {\n  color: blue;\n  font-size: 65px;\n  border-width: 1px;\n  border-color: gray;\n  border-style: solid;\n  border-radius: 5px;\n  height: 72px;\n  width: 72px;\n  line-height: 65px;\n  text-align: center;\n  box-sizing: border-box;\n  margin: 10px;\n  box-shadow: 1px 3px gainsboro; }\n  ._2ZF2B5lMO-MdoECoRxhiQ:hover {\n    cursor: crosshair; }\n\n.jb4Qu5HG5N8eLmwncFlQk {\n  color: white; }\n\n.Ee9sOczouf09bwJlkLc00 {\n  color: red; }\n\n._2m0ZSpWluCe1hdkuGqEQm6 {\n  color: blue; }\n", ""]);
+exports.push([module.i, "._2ZF2B5lMO-MdoECoRxhiQ {\n  color: blue;\n  font-size: 65px;\n  border-width: 1px;\n  border-color: gray;\n  border-style: solid;\n  border-radius: 5px;\n  height: 72px;\n  width: 72px;\n  line-height: 65px;\n  text-align: center;\n  box-sizing: border-box;\n  margin: 10px;\n  box-shadow: 1px 5px 10px 1px gainsboro; }\n  ._2ZF2B5lMO-MdoECoRxhiQ:hover {\n    cursor: crosshair; }\n\n.jb4Qu5HG5N8eLmwncFlQk {\n  color: white; }\n\n.Ee9sOczouf09bwJlkLc00 {\n  color: red; }\n\n._2m0ZSpWluCe1hdkuGqEQm6 {\n  color: blue; }\n", ""]);
 
 // exports
 exports.locals = {
